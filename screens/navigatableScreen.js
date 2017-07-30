@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { View, StatusBar } from 'react-native'
+import styled from 'styled-components/native'
 
 function navigatableScreen(WrappedComponent, title) {
     return class extends Component {
@@ -16,16 +17,18 @@ function navigatableScreen(WrappedComponent, title) {
 
         render() {
             return (
-                <View>
+                <StyledView>
                     <StatusBar
                         backgroundColor="#512DA8"
                         barStyle="light-content"
                     />
                     <WrappedComponent {...this.props} />
-                </View>
+                </StyledView>
             )
         }
     }
 }
+
+const StyledView = styled.View`padding-bottom: 136px;`
 
 export default navigatableScreen

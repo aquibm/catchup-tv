@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, Image } from 'react-native'
+import { View, Text, Image, FlatList } from 'react-native'
 
 import navigatableScreen from '../navigatableScreen'
 import { searchForShows } from '../../api/showSearch.stub'
@@ -8,7 +8,7 @@ import ShowSearch from '../../components/showSearch'
 
 class SearchScreen extends Component {
     state = {
-        searchText: 'Game of thrones',
+        shows: [],
     }
 
     _goToShow = () => {
@@ -36,15 +36,15 @@ class SearchScreen extends Component {
         }
     }
 
-    renderShow(show) {
+    _renderShow = ({ item }) => {
         return (
-            <View key={show.id}>
+            <View>
                 <Image
-                    source={{ uri: show.image.medium }}
+                    source={{ uri: item.image.medium }}
                     style={{ width: 210, height: 295 }}
                 />
                 <Text>
-                    {show.name}
+                    {item.name}
                 </Text>
             </View>
         )
@@ -56,7 +56,7 @@ class SearchScreen extends Component {
         return (
             <View>
                 <ShowSearch onSearch={this._search} />
-                {shows && shows.map(show => this.renderShow(show))}
+                <FlatList data={shows} renderItem={this._renderShow} />
             </View>
         )
     }

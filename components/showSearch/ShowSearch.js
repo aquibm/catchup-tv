@@ -10,7 +10,7 @@ class ShowSearch extends Component {
     }
 
     state = {
-        text: '',
+        text: 'Game of ',
     }
 
     _onChangeText = text => {

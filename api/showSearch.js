@@ -4,8 +4,9 @@ export const searchForShows = searchString => {
     return fetch(`http://api.tvmaze.com/search/shows?q=${searchString}`)
         .then(response => response.json())
         .then(data =>
-            data
-                .sort((prev, next) => next.score - prev.score)
-                .map(result => result.show),
+            data.sort((prev, next) => next.score - prev.score).map(result => ({
+                ...result.show,
+                key: result.show.id,
+            })),
         )
 }

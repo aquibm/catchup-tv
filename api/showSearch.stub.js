@@ -138,7 +138,10 @@ export const searchForShows = searchString => {
 
     const response = showResponse
         .sort((prev, next) => next.score - prev.score)
-        .map(result => result.show)
+        .map(result => ({
+            ...result.show,
+            key: result.show.id,
+        }))
 
     return new Promise(resolve => {
         setTimeout(() => resolve(response), 500)
