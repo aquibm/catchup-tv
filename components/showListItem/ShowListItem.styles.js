@@ -35,5 +35,5 @@ export const Genre = styled.Text`
     color: white;
     border-radius: 4px;
     padding: 4px;
-    margin-right: 10px;
+    margin: 5px 10px 0 0;
 `
