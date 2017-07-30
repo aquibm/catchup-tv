@@ -1,0 +1,5 @@
+{
+    "name": "search",
+    "main": "./Search.js",
+    "version": "1.0.0"
+}

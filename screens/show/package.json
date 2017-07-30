@@ -1,0 +1,5 @@
+{
+    "name": "show",
+    "main": "./Show.js",
+    "version": "1.0.0"
+}
