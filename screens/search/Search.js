@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
-import { View, TextInput, Text, Image } from 'react-native'
+import { View, Text, Image } from 'react-native'
 
 import navigatableScreen from '../navigatableScreen'
 import { searchForShows } from '../../api/showSearch.stub'
+
+import ShowSearch from '../../components/showSearch'
 
 class SearchScreen extends Component {
     state = {
@@ -21,9 +23,7 @@ class SearchScreen extends Component {
         }))
     }
 
-    _search = async () => {
-        const { searchText } = this.state
-
+    _search = async searchText => {
         try {
             const shows = await searchForShows(searchText)
 
@@ -53,15 +53,7 @@ class SearchScreen extends Component {
 
         return (
             <View>
-                <TextInput
-                    value={searchText}
-                    onChangeText={this._handleSearchChange}
-                    onSubmitEditing={this._search}
-                    style={{ height: 44, padding: 8 }}
-                    autoCapitalize="sentences"
-                    autoFocus={true}
-                    placeholder="Search for TV shows"
-                />
+                <ShowSearch onSearch={this._search} />
                 {shows && shows.map(show => this.renderShow(show))}
             </View>
         )
