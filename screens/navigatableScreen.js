@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { View, StatusBar } from 'react-native'
 import styled from 'styled-components/native'
+import Toast from 'react-native-easy-toast'
 
 function navigatableScreen(WrappedComponent, title) {
     return class extends Component {
@@ -15,6 +16,10 @@ function navigatableScreen(WrappedComponent, title) {
             headerTintColor: '#FFF',
         }
 
+        _showToast = message => {
+            this.refs.toast.show(message)
+        }
+
         render() {
             return (
                 <StyledView>
@@ -22,7 +27,11 @@ function navigatableScreen(WrappedComponent, title) {
                         backgroundColor="#512DA8"
                         barStyle="light-content"
                     />
-                    <WrappedComponent {...this.props} />
+                    <Toast ref="toast" />
+                    <WrappedComponent
+                        {...this.props}
+                        showToast={this._showToast}
+                    />
                 </StyledView>
             )
         }

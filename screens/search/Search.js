@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text, Image, FlatList } from 'react-native'
+import PropTypes from 'prop-types'
 
 import navigatableScreen from '../navigatableScreen'
 import { searchForShows } from '../../api/showSearch.stub'
@@ -7,6 +8,10 @@ import { searchForShows } from '../../api/showSearch.stub'
 import ShowSearch from '../../components/showSearch'
 
 class SearchScreen extends Component {
+    static propTypes = {
+        showToast: PropTypes.func.isRequired,
+    }
+
     state = {
         shows: [],
     }
@@ -14,13 +19,6 @@ class SearchScreen extends Component {
     _goToShow = () => {
         const { navigate } = this.props.navigation
         navigate('Show')
-    }
-
-    _handleSearchChange = searchText => {
-        this.setState(state => ({
-            ...state,
-            searchText,
-        }))
     }
 
     _search = async searchText => {
@@ -32,7 +30,7 @@ class SearchScreen extends Component {
                 shows,
             }))
         } catch (error) {
-            // TOOD(AM): Alert or smth
+            this.props.showToast(error.message)
         }
     }
 

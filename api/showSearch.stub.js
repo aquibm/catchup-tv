@@ -134,7 +134,8 @@ const showResponse = [
 ]
 
 export const searchForShows = searchString => {
-    if (!searchString || searchString.length < 3) return undefined
+    if (!searchString || searchString.length < 3)
+        throw Error('Please search for a show')
 
     const response = showResponse
         .sort((prev, next) => next.score - prev.score)
