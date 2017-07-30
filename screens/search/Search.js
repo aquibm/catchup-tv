@@ -31,8 +31,8 @@ class SearchScreen extends Component {
         }
 
         navigate('Show', {
-            id: selectedShow.id,
             title: selectedShow.name,
+            show: selectedShow,
         })
     }
 
