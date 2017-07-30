@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, Image, FlatList } from 'react-native'
+import { View, FlatList } from 'react-native'
 import PropTypes from 'prop-types'
 
 import navigatableScreen from '../navigatableScreen'
@@ -7,6 +7,7 @@ import { searchForShows } from '../../api/showSearch'
 
 import ShowSearch from '../../components/showSearch'
 import ShowListItem from '../../components/showListItem'
+import { Loader } from './Search.styles'
 
 class SearchScreen extends Component {
     static propTypes = {
@@ -15,6 +16,7 @@ class SearchScreen extends Component {
 
     state = {
         shows: [],
+        isSearching: false,
     }
 
     _goToShow = id => {
@@ -36,12 +38,16 @@ class SearchScreen extends Component {
 
     _search = async searchText => {
         try {
+            await this.setState({ isSearching: true })
+
             const shows = await searchForShows(searchText)
 
-            this.setState(state => ({
-                ...state,
-                shows,
-            }))
+            if (!shows || shows.length < 1)
+                this.props.showToast(
+                    `Sorry, couldn't find anything for ${searchText}`,
+                )
+
+            await this.setState({ shows, isSearching: false })
         } catch (error) {
             this.props.showToast(error.message)
         }
@@ -52,12 +58,14 @@ class SearchScreen extends Component {
     }
 
     render() {
-        const { searchText, shows } = this.state
+        const { shows, isSearching } = this.state
 
         return (
             <View>
                 <ShowSearch onSearch={this._search} />
-                <FlatList data={shows} renderItem={this._renderShow} />
+                {isSearching && <Loader />}
+                {!isSearching &&
+                    <FlatList data={shows} renderItem={this._renderShow} />}
             </View>
         )
     }
