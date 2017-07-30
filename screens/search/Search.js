@@ -31,7 +31,9 @@ class SearchScreen extends Component {
                 ...state,
                 shows,
             }))
-        } catch (error) {}
+        } catch (error) {
+            // TOOD(AM): Alert or smth
+        }
     }
 
     renderShow(show) {
