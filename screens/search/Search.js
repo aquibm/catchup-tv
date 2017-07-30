@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { View, TextInput, Text, Image } from 'react-native'
 
 import navigatableScreen from '../navigatableScreen'
+import { searchForShows } from '../../api/showSearch.stub'
 
 class SearchScreen extends Component {
     state = {
@@ -23,18 +24,14 @@ class SearchScreen extends Component {
     _search = async () => {
         const { searchText } = this.state
 
-        if (!searchText || searchText.length < 3) return // TODO(AM): Alert
+        try {
+            const shows = await searchForShows(searchText)
 
-        response = await fetch(
-            `http://api.tvmaze.com/search/shows?q=${searchText}`,
-        )
-
-        json = await response.json()
-
-        this.setState(state => ({
-            ...state,
-            response: json,
-        }))
+            this.setState(state => ({
+                ...state,
+                shows,
+            }))
+        } catch (error) {}
     }
 
     renderShow(show) {
@@ -52,7 +49,7 @@ class SearchScreen extends Component {
     }
 
     render() {
-        const { searchText, response } = this.state
+        const { searchText, shows } = this.state
 
         return (
             <View>
@@ -65,8 +62,7 @@ class SearchScreen extends Component {
                     autoFocus={true}
                     placeholder="Search for TV shows"
                 />
-                {response &&
-                    response.map(result => this.renderShow(result.show))}
+                {shows && shows.map(show => this.renderShow(show))}
             </View>
         )
     }
