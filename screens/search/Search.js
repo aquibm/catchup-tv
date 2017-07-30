@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
 import { Text, View, Button, StyleSheet } from 'react-native'
 
-class SearchScreen extends Component {
-    static navigationOptions = {
-        title: 'Catchup TV',
-    }
+import navigatableScreen from '../navigatableScreen'
 
+class SearchScreen extends Component {
     goToShow = () => {
         const { navigate } = this.props.navigation
         navigate('Show')
@@ -21,4 +19,4 @@ class SearchScreen extends Component {
     }
 }
 
-export default SearchScreen
+export default navigatableScreen(SearchScreen, 'Catchup TV')

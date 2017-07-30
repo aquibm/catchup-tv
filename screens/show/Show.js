@@ -1,10 +1,11 @@
 import React from 'react'
 import { Text, View } from 'react-native'
 
-const ShowScreen = () => (
+import navigatableScreen from '../navigatableScreen'
+
+const ShowScreen = () =>
     <View>
         <Text>Show Screen!</Text>
     </View>
-)
 
-export default ShowScreen
+export default navigatableScreen(ShowScreen, 'Show')
