@@ -5,8 +5,10 @@ import Toast from 'react-native-easy-toast'
 
 function navigatableScreen(WrappedComponent, title) {
     return class extends Component {
-        static navigationOptions = {
-            title,
+        static navigationOptions = ({ navigation }) => ({
+            title:
+                (navigation.state.params && navigation.state.params.title) ||
+                title,
             headerStyle: {
                 backgroundColor: '#512DA8',
             },
@@ -14,7 +16,7 @@ function navigatableScreen(WrappedComponent, title) {
                 color: '#FFF',
             },
             headerTintColor: '#FFF',
-        }
+        })
 
         _showToast = message => {
             this.refs.toast.show(message)

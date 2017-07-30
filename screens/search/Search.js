@@ -19,7 +19,19 @@ class SearchScreen extends Component {
 
     _goToShow = id => {
         const { navigate } = this.props.navigation
-        navigate('Show')
+        const { shows } = this.state
+
+        const selectedShow = shows.find(show => show.id === id)
+
+        if (!selectedShow) {
+            this.props.showToast('Something went wrong')
+            return
+        }
+
+        navigate('Show', {
+            id: selectedShow.id,
+            title: selectedShow.name,
+        })
     }
 
     _search = async searchText => {
