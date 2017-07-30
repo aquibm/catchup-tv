@@ -1,5 +1,5 @@
 ## Catchup TV
-React Native app to figure figure out how long it would take to catch up to the latest episode of a given TV show.
+React Native app to figure out how long it would take to catch up to the latest episode of a given TV show.
 
 ### TODO
 - [ ] Build out the Episode API
