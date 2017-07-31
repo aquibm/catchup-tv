@@ -1,0 +1,5 @@
+{
+    "name": "animated-time-to-catch-up",
+    "main": "./AnimatedTimeToCatchUp.js",
+    "version": "1.0.0"
+}

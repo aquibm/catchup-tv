@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { Text, View } from 'react-native'
-import moment from 'moment'
 
 import navigatableScreen from '../navigatableScreen'
 import { loadAiredEpisodes } from '../../api/showEpisodes'
+import AnimatedTimeToCatchUp from '../../components/animatedTimeToCatchUp'
 
 import { Loader } from './Show.styles'
 
@@ -44,9 +44,10 @@ class ShowScreen extends Component {
             <View>
                 {isLoading && <Loader />}
                 {!isLoading &&
-                    <Text>
-                        {timeToCatchup}
-                    </Text>}
+                    <AnimatedTimeToCatchUp
+                        fromMinutes={0}
+                        toMinutes={timeToCatchup}
+                    />}
             </View>
         )
     }
