@@ -19,6 +19,7 @@
     "preset": "jest-expo"
   },
   "dependencies": {
+    "cubic-bezier": "^0.1.2",
     "expo": "^19.0.0",
     "prop-types": "^15.5.10",
     "react": "16.0.0-alpha.12",
