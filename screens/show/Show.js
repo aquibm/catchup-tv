@@ -11,7 +11,7 @@ class ShowScreen extends Component {
     state = {
         isLoading: true,
         timeToCatchup: 0,
-        show: this.props.navigation.state.params.show,
+        show: this.props.navigation.state.params.show
     }
 
     componentDidMount() {
@@ -25,16 +25,17 @@ class ShowScreen extends Component {
             const episodes = await loadAiredEpisodes(show.id)
             const timeToCatchupInMinutes = episodes.reduce(
                 (acc, episode) => acc + episode.runtime,
-                0,
+                0
             )
 
             await this.setState(state => ({
                 ...state,
                 timeToCatchup: timeToCatchupInMinutes,
-                isLoading: false,
+                isLoading: false
             }))
         } catch (error) {
             this.props.showToast(error.message)
+            this.props.navigation.navigate('Search')
         }
     }
 
@@ -44,10 +45,7 @@ class ShowScreen extends Component {
             <View>
                 {isLoading && <Loader />}
                 {!isLoading &&
-                    <AnimatedTimeToCatchUp
-                        fromMinutes={0}
-                        toMinutes={timeToCatchup}
-                    />}
+                    <AnimatedTimeToCatchUp toMinutes={timeToCatchup} />}
             </View>
         )
     }

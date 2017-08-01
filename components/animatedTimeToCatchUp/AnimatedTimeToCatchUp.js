@@ -13,12 +13,12 @@ import {
 
 class AnimatedTimeToCatchUp extends Component {
     static propTypes = {
-        fromMinutes: PropTypes.number.isRequired,
+        fromMinutes: PropTypes.number,
         toMinutes: PropTypes.number.isRequired
     }
 
     state = {
-        currentMinutes: this.props.fromMinutes,
+        currentMinutes: this.props.fromMinutes || 0,
         incrementRate: Math.floor(this.props.toMinutes / 15)
     }
 
@@ -59,12 +59,16 @@ class AnimatedTimeToCatchUp extends Component {
         return (
             <AnimatedView>
                 <CountView>
-                    <Number hours="true">{hours}</Number>
+                    <Number hours="true">
+                        {hours}
+                    </Number>
                     <Unit>HOURS</Unit>
                 </CountView>
 
                 <CountView>
-                    <Number>{minutes}</Number>
+                    <Number>
+                        {minutes}
+                    </Number>
                     <Unit>MINUTES</Unit>
                 </CountView>
             </AnimatedView>
