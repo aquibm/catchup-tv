@@ -7,16 +7,17 @@ import { searchForShows } from '../../api/showSearch'
 
 import ShowSearch from '../../components/showSearch'
 import ShowListItem from '../../components/showListItem'
+import AnimatedTimeToCatchUp from '../../components/animatedTimeToCatchUp'
 import { Loader } from './Search.styles'
 
 class SearchScreen extends Component {
     static propTypes = {
-        showToast: PropTypes.func.isRequired,
+        showToast: PropTypes.func.isRequired
     }
 
     state = {
         shows: [],
-        isSearching: false,
+        isSearching: false
     }
 
     _goToShow = id => {
@@ -32,7 +33,7 @@ class SearchScreen extends Component {
 
         navigate('Show', {
             title: selectedShow.name,
-            show: selectedShow,
+            show: selectedShow
         })
     }
 
@@ -44,7 +45,7 @@ class SearchScreen extends Component {
 
             if (!shows || shows.length < 1)
                 this.props.showToast(
-                    `Sorry, couldn't find anything for ${searchText}`,
+                    `Sorry, couldn't find anything for ${searchText}`
                 )
 
             await this.setState({ shows, isSearching: false })

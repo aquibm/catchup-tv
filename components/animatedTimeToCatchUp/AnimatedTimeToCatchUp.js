@@ -1,19 +1,25 @@
 import React, { Component } from 'React'
 import PropTypes from 'prop-types'
-import bezier from 'cubic-bezier'
+import leftPad from 'left-pad'
+import { View } from 'react-native'
 
 // Styled Components
-import { AnimatedView, Hours, Minutes } from './AnimatedTimeToCatchUp.styles'
+import {
+    AnimatedView,
+    CountView,
+    Number,
+    Unit
+} from './AnimatedTimeToCatchUp.styles'
 
 class AnimatedTimeToCatchUp extends Component {
     static propTypes = {
         fromMinutes: PropTypes.number.isRequired,
-        toMinutes: PropTypes.number.isRequired,
+        toMinutes: PropTypes.number.isRequired
     }
 
     state = {
         currentMinutes: this.props.fromMinutes,
-        incrementRate: Math.floor(this.props.toMinutes / 180),
+        incrementRate: Math.floor(this.props.toMinutes / 15)
     }
 
     componentDidMount() {
@@ -25,49 +31,42 @@ class AnimatedTimeToCatchUp extends Component {
         timeout && clearTimeout(timeout)
     }
 
-    // TODO(AM): Refactor!
-    _tick = async () => {
+    _tick = () => {
         const { toMinutes } = this.props
 
-        await this.setState(state => {
-            let addMinutes = state.incrementRate
+        this.setState(state => {
+            let nextMinutes = state.currentMinutes + state.incrementRate
             let timeout
 
-            if (toMinutes - state.currentMinutes < addMinutes)
-                addMinutes = toMinutes - state.currentMinutes
+            if (nextMinutes > toMinutes) nextMinutes = toMinutes
 
-            if (state.currentMinutes < toMinutes)
-                timeout = setTimeout(
-                    this._tick,
-                    this._easeIn(
-                        (state.currentMinutes + addMinutes) / toMinutes,
-                    ) * 0.016666667,
-                )
+            if (nextMinutes > state.currentMinutes)
+                timeout = setTimeout(this._tick, 16)
 
             return {
-                currentMinutes: state.currentMinutes + addMinutes,
-                timeout,
+                currentMinutes: nextMinutes,
+                timeout
             }
         })
     }
 
-    _easeIn = bezier(0.39, 0.575, 0.565, 1, 6000)
-
     render() {
         const { currentMinutes } = this.state
 
-        const hours = Math.floor(currentMinutes / 60)
-        const minutes = currentMinutes % 60
+        const hours = leftPad(Math.floor(currentMinutes / 60), 4, '0')
+        const minutes = leftPad(currentMinutes % 60, 4, '0')
 
         return (
             <AnimatedView>
-                <Hours>
-                    {hours} h
-                </Hours>
+                <CountView>
+                    <Number hours="true">{hours}</Number>
+                    <Unit>HOURS</Unit>
+                </CountView>
 
-                <Minutes>
-                    {minutes} m
-                </Minutes>
+                <CountView>
+                    <Number>{minutes}</Number>
+                    <Unit>MINUTES</Unit>
+                </CountView>
             </AnimatedView>
         )
     }
