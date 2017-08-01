@@ -5,6 +5,7 @@ import navigatableScreen from '../navigatableScreen'
 import { loadAiredEpisodes } from '../../api/showEpisodes'
 import AnimatedTimeToCatchUp from '../../components/animatedTimeToCatchUp'
 import Loader from '../../components/loader'
+import ShowStats from '../../components/showStats'
 
 class ShowScreen extends Component {
     state = {
@@ -27,9 +28,26 @@ class ShowScreen extends Component {
                 0
             )
 
+            const imageUrl = show.image && show.image.medium
+            const seasonCount =
+                episodes.reduce(
+                    (prev, episode) =>
+                        episode.season > prev ? episode.season : prev,
+                    0
+                ) || 'N/A'
+
+            const averageRuntime = Math.floor(
+                episodes.reduce((acc, episode) => acc + episode.runtime, 0) /
+                    episodes.length
+            )
+
             await this.setState(state => ({
                 ...state,
                 timeToCatchup: timeToCatchupInMinutes,
+                imageUrl,
+                episodeCount: episodes.length,
+                seasonCount,
+                averageRuntime,
                 isLoading: false
             }))
         } catch (error) {
@@ -39,12 +57,28 @@ class ShowScreen extends Component {
     }
 
     render() {
-        const { isLoading, timeToCatchup } = this.state
+        const {
+            isLoading,
+            timeToCatchup,
+            show,
+            imageUrl,
+            episodeCount,
+            seasonCount,
+            averageRuntime
+        } = this.state
         return (
             <View>
                 {isLoading && <Loader />}
                 {!isLoading &&
-                    <AnimatedTimeToCatchUp toMinutes={timeToCatchup} />}
+                    <View>
+                        <AnimatedTimeToCatchUp toMinutes={timeToCatchup} />
+                        <ShowStats
+                            imageUrl={imageUrl}
+                            episodeCount={episodeCount}
+                            seasonCount={seasonCount}
+                            averageRuntime={averageRuntime}
+                        />
+                    </View>}
             </View>
         )
     }

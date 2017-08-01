@@ -1,0 +1,5 @@
+{
+    "name": "show-stats",
+    "main": "./ShowStats.js",
+    "version": "1.0.0"
+}
