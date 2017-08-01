@@ -4,8 +4,7 @@ import { Text, View } from 'react-native'
 import navigatableScreen from '../navigatableScreen'
 import { loadAiredEpisodes } from '../../api/showEpisodes'
 import AnimatedTimeToCatchUp from '../../components/animatedTimeToCatchUp'
-
-import { Loader } from './Show.styles'
+import Loader from '../../components/loader'
 
 class ShowScreen extends Component {
     state = {
