@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View } from 'react-native'
+import { Text, View, ScrollView } from 'react-native'
 
 import navigatableScreen from '../navigatableScreen'
 import { loadAiredEpisodes } from '../../api/showEpisodes'
@@ -72,12 +72,14 @@ class ShowScreen extends Component {
                 {!isLoading &&
                     <View>
                         <AnimatedTimeToCatchUp toMinutes={timeToCatchup} />
-                        <ShowStats
-                            imageUrl={imageUrl}
-                            episodeCount={episodeCount}
-                            seasonCount={seasonCount}
-                            averageRuntime={averageRuntime}
-                        />
+                        <ScrollView>
+                            <ShowStats
+                                imageUrl={imageUrl}
+                                episodeCount={episodeCount}
+                                seasonCount={seasonCount}
+                                averageRuntime={averageRuntime}
+                            />
+                        </ScrollView>
                     </View>}
             </View>
         )
