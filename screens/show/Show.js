@@ -6,6 +6,7 @@ import { loadAiredEpisodes } from '../../api/showEpisodes'
 import AnimatedTimeToCatchUp from '../../components/animatedTimeToCatchUp'
 import Loader from '../../components/loader'
 import ShowStats from '../../components/showStats'
+import ShowSummary from '../../components/showSummary'
 
 class ShowScreen extends Component {
     state = {
@@ -46,6 +47,8 @@ class ShowScreen extends Component {
                     episodes.length
             )
 
+            const summary = show.summary
+
             await this.setState(state => ({
                 ...state,
                 timeToCatchup: timeToCatchupInMinutes,
@@ -53,6 +56,7 @@ class ShowScreen extends Component {
                 episodeCount: episodes.length,
                 seasonCount,
                 averageRuntime,
+                summary,
                 isLoading: false
             }))
         } catch (error) {
@@ -69,7 +73,8 @@ class ShowScreen extends Component {
             imageUrl,
             episodeCount,
             seasonCount,
-            averageRuntime
+            averageRuntime,
+            summary
         } = this.state
         return (
             <View>
@@ -84,6 +89,7 @@ class ShowScreen extends Component {
                                 seasonCount={seasonCount}
                                 averageRuntime={averageRuntime}
                             />
+                            <ShowSummary summary={summary} />
                         </ScrollView>
                     </View>}
             </View>
