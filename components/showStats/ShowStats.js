@@ -1,6 +1,18 @@
 import React from 'react'
-import styled from 'styled-components/native'
+import Please from 'pleasejs'
 import noPoster from '../../assets/no-poster.png'
+
+// Styled Components
+import {
+    Wrapper,
+    CardLabel,
+    Card,
+    Poster,
+    StatsContainer,
+    Stats,
+    StatsCount,
+    StatsLabel
+} from './ShowStats.styles'
 
 const imageSrc = imageUrl => {
     if (!imageUrl) return noPoster
@@ -15,39 +27,29 @@ const ShowStats = ({ imageUrl, seasonCount, episodeCount, averageRuntime }) =>
         <CardLabel>STATS</CardLabel>
         <Card>
             <Poster source={imageSrc(imageUrl)} />
-            <Stats>
-                <Stat>
-                    Seasons: {seasonCount}
-                </Stat>
-                <Stat>
-                    Episodes: {episodeCount}
-                </Stat>
-                <Stat>
-                    Average Runtime: {averageRuntime} mins
-                </Stat>
-            </Stats>
+            <StatsContainer>
+                <Stats type="seasons">
+                    <StatsCount>
+                        {seasonCount}
+                    </StatsCount>
+                    <StatsLabel>SEASONS</StatsLabel>
+                </Stats>
+
+                <Stats type="episodes">
+                    <StatsCount>
+                        {episodeCount}
+                    </StatsCount>
+                    <StatsLabel>EPISODES</StatsLabel>
+                </Stats>
+
+                <Stats type="runtime">
+                    <StatsCount>
+                        {averageRuntime}
+                    </StatsCount>
+                    <StatsLabel>AVG RUNTIME</StatsLabel>
+                </Stats>
+            </StatsContainer>
         </Card>
     </Wrapper>
-
-const Wrapper = styled.View`margin: 20px 10px 0;`
-const CardLabel = styled.Text`margin-bottom: 5px;`
-
-const Card = styled.View`
-    background: white;
-    padding: 15px;
-    flex-direction: row;
-`
-
-const Poster = styled.Image`
-    width: 180px;
-    height: 250px;
-`
-
-const Stats = styled.View`
-    flex: 1;
-    margin-left: 10px;
-`
-
-const Stat = styled.Text``
 
 export default ShowStats
