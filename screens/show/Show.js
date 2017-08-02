@@ -29,10 +29,10 @@ class ShowScreen extends Component {
             )
 
             const episodeWithImage = episodes.find(
-                episode => episode.image && episode.image.medium
+                episode => episode.image && episode.image.original
             )
 
-            const imageUrl = episodeWithImage && episodeWithImage.image.medium
+            const imageUrl = episodeWithImage && episodeWithImage.image.original
 
             const seasonCount =
                 episodes.reduce(
