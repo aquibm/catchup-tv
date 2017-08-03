@@ -1,15 +1,11 @@
 import React from 'react'
 import HTMLView from 'react-native-htmlview'
 
-// Styled components
-import { Wrapper, CardLabel, Card } from './ShowSummary.styles'
+import Card from '../card'
 
 const ShowSummary = ({ summary }) =>
-    <Wrapper>
-        <CardLabel>SUMMARY</CardLabel>
-        <Card>
-            <HTMLView value={summary} />
-        </Card>
-    </Wrapper>
+    <Card label="SUMMARY">
+        <HTMLView value={summary} />
+    </Card>
 
 export default ShowSummary

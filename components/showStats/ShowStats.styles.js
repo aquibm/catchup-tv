@@ -1,13 +1,5 @@
 import styled from 'styled-components/native'
 
-export const Wrapper = styled.View`margin: 20px 10px 0;`
-export const CardLabel = styled.Text`margin-bottom: 5px;`
-
-export const Card = styled.View`
-    background: white;
-    flex-direction: column;
-`
-
 export const Poster = styled.Image`
     width: 100%;
     height: 200px;
