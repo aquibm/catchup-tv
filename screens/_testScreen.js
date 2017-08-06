@@ -2,11 +2,14 @@ import React from 'react'
 import styled from 'styled-components/native'
 import navigatableScreen from './navigatableScreen'
 
+import Calculator from '../components/calculator'
 import ShowStats from '../components/showStats'
 import ShowSummary from '../components/showSummary'
 
 const TestScreen = ({ navigation }) =>
-    <View>
+    <ScrollView>
+        <Calculator episodes={63} averageRuntime={60} />
+
         <ShowStats
             imageUrl="http://static.tvmaze.com/uploads/images/original_untouched/1/2669.jpg"
             seasonCount={7}
@@ -20,9 +23,9 @@ const TestScreen = ({ navigation }) =>
             onPress={() => navigation.navigate('Search')}
             title="Go to search"
         />
-    </View>
+    </ScrollView>
 
-const View = styled.View``
-const Button = styled.Button``
+const ScrollView = styled.ScrollView`margin-bottom: -136px;`
+const Button = styled.Button`margin-top: 50px;`
 
 export default navigatableScreen(TestScreen, 'Test Screen')

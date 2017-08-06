@@ -1,0 +1,5 @@
+{
+    "name": "calculator",
+    "main": "./Calculator.js",
+    "version": "1.0.0"
+}

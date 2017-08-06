@@ -8,6 +8,7 @@ import AnimatedTimeToCatchUp from '../../components/animatedTimeToCatchUp'
 import Loader from '../../components/loader'
 import ShowStats from '../../components/showStats'
 import ShowSummary from '../../components/showSummary'
+import Calculator from '../../components/calculator'
 
 class ShowScreen extends Component {
     state = {
@@ -95,6 +96,10 @@ class ShowScreen extends Component {
                                     averageRuntime={averageRuntime}
                                 />
                                 <ShowSummary summary={summary} />
+                                <Calculator
+                                    episodes={episodeCount}
+                                    averageRuntime={averageRuntime}
+                                />
                             </ScrollSheet>
                         </ScrollView>
                     </View>}
