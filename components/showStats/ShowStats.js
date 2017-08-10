@@ -26,21 +26,21 @@ const ShowStats = ({ imageUrl, seasonCount, episodeCount, averageRuntime }) =>
         <Poster source={imageSrc(imageUrl)} />
         <StatsContainer>
             <Stats type="seasons">
-                <StatsCount>
+                <StatsCount selectable>
                     {seasonCount}
                 </StatsCount>
                 <StatsLabel>SEASONS</StatsLabel>
             </Stats>
 
             <Stats type="episodes">
-                <StatsCount>
+                <StatsCount selectable>
                     {episodeCount}
                 </StatsCount>
                 <StatsLabel>EPISODES</StatsLabel>
             </Stats>
 
             <Stats type="runtime">
-                <StatsCount>
+                <StatsCount selectable>
                     {averageRuntime}
                 </StatsCount>
                 <StatsLabel>AVG RUNTIME</StatsLabel>

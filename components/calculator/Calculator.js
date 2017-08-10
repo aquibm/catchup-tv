@@ -95,7 +95,10 @@ class Calculator extends Component {
                             alignItems: 'center'
                         }}
                     >
-                        <Text style={{ fontSize: 30, textAlign: 'center' }}>
+                        <Text
+                            style={{ fontSize: 30, textAlign: 'center' }}
+                            selectable
+                        >
                             {humanized}
                         </Text>
                     </View>
