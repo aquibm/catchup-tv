@@ -6,11 +6,11 @@ import { SearchInput } from './ShowSearch.styles'
 
 class ShowSearch extends Component {
     static propTypes = {
-        onSearch: PropTypes.func.isRequired,
+        onSearch: PropTypes.func.isRequired
     }
 
     state = {
-        text: 'Game of ',
+        text: ''
     }
 
     _onChangeText = text => {
