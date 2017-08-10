@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import leftPad from 'left-pad'
 import { View } from 'react-native'
 
+import Card from '../card'
+
 // Styled Components
 import {
     AnimatedView,
@@ -57,21 +59,23 @@ class AnimatedTimeToCatchUp extends Component {
         const minutes = leftPad(currentMinutes % 60, 4, '0')
 
         return (
-            <AnimatedView>
-                <CountView>
-                    <Number hours="true">
-                        {hours}
-                    </Number>
-                    <Unit>HOURS</Unit>
-                </CountView>
+            <Card label="TIME TO CATCH UP" noPadding>
+                <AnimatedView>
+                    <CountView>
+                        <Number hours="true">
+                            {hours}
+                        </Number>
+                        <Unit>HOURS</Unit>
+                    </CountView>
 
-                <CountView>
-                    <Number>
-                        {minutes}
-                    </Number>
-                    <Unit>MINUTES</Unit>
-                </CountView>
-            </AnimatedView>
+                    <CountView>
+                        <Number>
+                            {minutes}
+                        </Number>
+                        <Unit>MINUTES</Unit>
+                    </CountView>
+                </AnimatedView>
+            </Card>
         )
     }
 }

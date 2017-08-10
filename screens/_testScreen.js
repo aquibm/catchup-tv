@@ -2,12 +2,15 @@ import React from 'react'
 import styled from 'styled-components/native'
 import navigatableScreen from './navigatableScreen'
 
+import AnimatedTimeToCatchUp from '../components/animatedTimeToCatchUp'
 import Calculator from '../components/calculator'
 import ShowStats from '../components/showStats'
 import ShowSummary from '../components/showSummary'
 
 const TestScreen = ({ navigation }) =>
     <ScrollView>
+        <AnimatedTimeToCatchUp toMinutes={3000} />
+
         <Calculator episodes={63} averageRuntime={60} />
 
         <ShowStats

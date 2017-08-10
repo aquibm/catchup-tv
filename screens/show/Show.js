@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, ScrollView, Dimensions } from 'react-native'
+import { View, ScrollView, Dimensions } from 'react-native'
 import styled from 'styled-components/native'
 
 import navigatableScreen from '../navigatableScreen'
@@ -86,9 +86,11 @@ class ShowScreen extends Component {
                 {isLoading && <Loader />}
                 {!isLoading &&
                     <View>
-                        <AnimatedTimeToCatchUp toMinutes={timeToCatchup} />
                         <ScrollView>
                             <ScrollSheet>
+                                <AnimatedTimeToCatchUp
+                                    toMinutes={timeToCatchup}
+                                />
                                 <ShowStats
                                     imageUrl={imageUrl}
                                     episodeCount={episodeCount}
@@ -109,6 +111,6 @@ class ShowScreen extends Component {
 }
 
 const Container = styled.View`height: ${p => p.height};`
-const ScrollSheet = styled.View`margin-bottom: 240px;`
+const ScrollSheet = styled.View`margin-bottom: 100px;`
 
 export default navigatableScreen(ShowScreen, 'Show')

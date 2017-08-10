@@ -4,7 +4,7 @@ export const AnimatedView = styled.View`
     flex-direction: row;
     height: 140px;
     padding: 20px;
-    background: #333;
+    background: #512da8;
 `
 
 export const CountView = styled.View`
