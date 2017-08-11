@@ -1,5 +1,9 @@
 {
     "expo": {
+        "name": "Catchup TV",
+        "slug": "catchup-tv",
+        "description": "Search for TV shows and work out how long it'd take to catch up to the most recent episode",
+        "primaryColor": "#512DA8",
         "sdkVersion": "19.0.0",
         "androidStatusBar": {
             "barStyle": "light-content",
