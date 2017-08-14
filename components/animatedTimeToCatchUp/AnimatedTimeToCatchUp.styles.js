@@ -18,7 +18,6 @@ export const Number = styled.Text`
     font-size: 50px;
     text-align: center;
     color: white;
-    font-family: Roboto;
 `
 
 export const Unit = styled.Text`
@@ -26,5 +25,4 @@ export const Unit = styled.Text`
     font-size: 20px;
     text-align: center;
     color: white;
-    font-family: Roboto;
 `
