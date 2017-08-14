@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Platform } from 'react-native'
 import PropTypes from 'prop-types'
 
 // Styled Components
@@ -32,7 +33,9 @@ class ShowSearch extends Component {
                 onSubmitEditing={this._search}
                 autoCapitalize="sentences"
                 autoFocus={true}
+                clearButtonMode="always"
                 placeholder="Search for TV shows"
+                platform={Platform.OS}
             />
         )
     }
