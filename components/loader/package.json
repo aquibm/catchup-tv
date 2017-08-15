@@ -1,0 +1,5 @@
+{
+    "name": "loader",
+    "main": "./Loader",
+    "version": "1.0.0"
+}

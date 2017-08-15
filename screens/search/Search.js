@@ -8,7 +8,7 @@ import { searchForShows } from '../../api/showSearch'
 import ShowSearch from '../../components/showSearch'
 import ShowListItem from '../../components/showListItem'
 import AnimatedTimeToCatchUp from '../../components/animatedTimeToCatchUp'
-import Loader from '../../components/loader/Loader'
+import Loader from '../../components/loader'
 
 class SearchScreen extends Component {
     static propTypes = {
