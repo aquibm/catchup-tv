@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
-import { Platform } from 'react-native'
 import PropTypes from 'prop-types'
-
-// Styled Components
-import { SearchInput } from './ShowSearch.styles'
+import styled from 'styled-components/native'
+import { Keyboard } from 'react-native'
 
 class ShowSearch extends Component {
     static propTypes = {
@@ -20,6 +18,7 @@ class ShowSearch extends Component {
 
     _search = () => {
         const { text } = this.state
+        Keyboard.dismiss()
         this.props.onSearch(text)
     }
 
@@ -35,10 +34,18 @@ class ShowSearch extends Component {
                 autoFocus={true}
                 clearButtonMode="always"
                 placeholder="Search for TV shows"
-                platform={Platform.OS}
             />
         )
     }
 }
+
+export const SearchInput = styled.TextInput`
+    width: 100%;
+    padding: 15px;
+    fontSize: 18px;
+    border-color: #d9d9d9;
+    border-width: 1px;
+    background-color: white;
+`
 
 export default ShowSearch

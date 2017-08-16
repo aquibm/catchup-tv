@@ -1,5 +1,5 @@
 {
     "name": "show-search",
-    "main": "./ShowSearch.js",
+    "main": "./ShowSearch",
     "version": "1.0.0"
 }
