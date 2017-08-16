@@ -50,6 +50,11 @@ class SearchScreen extends Component {
 
             await this.setState({ shows, isSearching: false })
         } catch (error) {
+            this.setState(state => ({
+                shows: [],
+                isSearching: false
+            }))
+
             this.props.showToast(error.message)
         }
     }
