@@ -18,7 +18,7 @@ export const SearchInputWrap = styled.View`
 
 export const ClearButtonWrap = styled.View`
     margin: 0;
-    padding-right: 20px;
+    padding: 15px 20px;
 `
 
 export const SearchInput = styled.TextInput.attrs({

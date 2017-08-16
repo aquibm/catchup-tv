@@ -30,6 +30,7 @@ class ShowSearch extends Component {
     }
 
     _clearSearch = () => {
+        this.searchInputNode.focus()
         this.setState({ text: '' })
     }
 
@@ -47,6 +48,7 @@ class ShowSearch extends Component {
                         autoFocus={true}
                         autoCorrect={false}
                         placeholder="Search for TV shows"
+                        innerRef={node => (this.searchInputNode = node)}
                     />
                 </SearchInputWrap>
 
