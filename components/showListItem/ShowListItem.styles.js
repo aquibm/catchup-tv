@@ -31,9 +31,9 @@ export const GenreWrap = styled.View`
 
 export const Genre = styled.Text`
     font-size: 16px;
-    background: palevioletred;
+    background: ${p => p.color};
     color: white;
     border-radius: 4px;
-    padding: 4px;
+    padding: 4px 8px;
     margin: 5px 10px 0 0;
 `

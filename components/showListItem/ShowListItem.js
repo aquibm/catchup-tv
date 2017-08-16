@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import ColorHash from 'color-hash'
 import { TouchableHighlight } from 'react-native'
 
 import noPoster from '../../assets/no-poster.png'
@@ -12,7 +13,7 @@ import {
     Year,
     Poster,
     GenreWrap,
-    Genre,
+    Genre
 } from './ShowListItem.styles'
 
 const getShowYear = premiereDate => {
@@ -24,6 +25,10 @@ const getPoster = image => {
 
     return { uri: image.medium }
 }
+
+const colorHash = new ColorHash({
+    lightness: 0.6
+})
 
 const ShowListItem = ({ show, onPress }) =>
     <TouchableHighlight onPress={() => onPress(show.id)}>
@@ -38,9 +43,9 @@ const ShowListItem = ({ show, onPress }) =>
                 </Year>
                 <GenreWrap>
                     {show.genres.map((genre, idx) =>
-                        <Genre key={idx}>
+                        <Genre key={idx} color={colorHash.hex(genre)}>
                             {genre}
-                        </Genre>,
+                        </Genre>
                     )}
                 </GenreWrap>
             </Info>
@@ -49,7 +54,7 @@ const ShowListItem = ({ show, onPress }) =>
 
 ShowListItem.propTypes = {
     show: PropTypes.object.isRequired,
-    onPress: PropTypes.func.isRequired,
+    onPress: PropTypes.func.isRequired
 }
 
 export default ShowListItem
