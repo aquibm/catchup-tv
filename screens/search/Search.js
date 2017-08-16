@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import { View, FlatList } from 'react-native'
+import { View, FlatList, Image } from 'react-native'
 import PropTypes from 'prop-types'
 
 import navigatableScreen from '../navigatableScreen'
 import { searchForShows } from '../../api/showSearch'
+import searchHelp from '../../assets/search-help.png'
 
 import ShowSearch from '../../components/showSearch'
 import ShowListItem from '../../components/showListItem'
@@ -63,6 +64,22 @@ class SearchScreen extends Component {
         return <ShowListItem show={item} onPress={this._goToShow} />
     }
 
+    _renderResults = shows => {
+        const hasShows = shows && shows.length > 0
+
+        return hasShows
+            ? <FlatList data={shows} renderItem={this._renderShow} />
+            : <Image
+                  source={searchHelp}
+                  style={{
+                      width: 338,
+                      height: 163,
+                      alignSelf: 'center',
+                      marginTop: 30
+                  }}
+              />
+    }
+
     render() {
         const { shows, isSearching } = this.state
 
@@ -70,8 +87,7 @@ class SearchScreen extends Component {
             <View>
                 <ShowSearch onSearch={this._search} />
                 {isSearching && <Loader />}
-                {!isSearching &&
-                    <FlatList data={shows} renderItem={this._renderShow} />}
+                {!isSearching && this._renderResults(shows)}
             </View>
         )
     }
