@@ -14,6 +14,12 @@
         "androidStatusBar": {
             "barStyle": "light-content",
             "backgroundColor": "#512DA8"
+        },
+        "android": {
+            "package": "com.aquibm.catchuptv",
+            "versionCode": 2,
+            "icon": "assets/icon.png",
+            "permissions": ["com.google.android.c2dm.permission.RECEIVE"]
         }
     }
 }
