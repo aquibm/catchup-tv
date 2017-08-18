@@ -72,10 +72,10 @@ class SearchScreen extends Component {
             : <Image
                   source={searchHelp}
                   style={{
-                      width: 338,
-                      height: 163,
+                      width: 250,
+                      height: 190,
                       alignSelf: 'center',
-                      marginTop: 30
+                      marginTop: 90
                   }}
               />
     }
